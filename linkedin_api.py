@@ -3,12 +3,13 @@ from src.linkedin_api import Linkedin
 api = Linkedin('keerthisurisetty11@gmail.com', 'LifeISgood18!!')
 
 # GET a profile
-profile = api get_profile( 'keerthi-surisetty')
+profile = api.get_profile( 'keerthi-surisetty')
 
 # GET a profiles contact info
-contact info = api.get profile_contact_info( 'keerthi-surisetty')
+contact_info = api.get_profile_contact_info( 'keerthi-surisetty')
 
 # GET Ist degree connections of a givén profile
-connections = api.get_profile_connections 1234ascip304*0
+connections = api.get_profile_connections('1234ascip304')  # If this is an ID or string
+
 
 print (profile)
