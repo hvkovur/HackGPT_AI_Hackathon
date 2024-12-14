@@ -1,4 +1,4 @@
-from src.linkedin_api import Linkedin
+from linkedin_api import Linkedin
 # Authenticate using any Linkedin user account credentials
 api = Linkedin('keerthisurisetty11@gmail.com', 'LifeISgood18!!')
 
