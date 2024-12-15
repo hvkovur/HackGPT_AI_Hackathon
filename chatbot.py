@@ -3,12 +3,11 @@ from dotenv import load_dotenv
 import google.generativeai as genai
 from linkedin_api import Linkedin
 
-# Load environment variables from a .env file
+# Load environment variables from .env file
 load_dotenv()
 
 class ChatBot:
     def __init__(self):
-        # Load API keys and login credentials
         google_api_key = os.getenv('GOOGLE_API_KEY')
         linkedin_email = os.getenv('LINKEDIN_EMAIL')
         linkedin_password = os.getenv('LINKEDIN_PASSWORD')
@@ -16,14 +15,12 @@ class ChatBot:
         if not all([google_api_key, linkedin_email, linkedin_password]):
             raise ValueError("You are missing a username or password.")
 
-        # Configure Google Generative AI
         genai.configure(api_key=google_api_key)
         self.model = genai.GenerativeModel('gemini-pro')
         self.chat = self.model.start_chat(history=[])
 
         self.linkedin_api = Linkedin(linkedin_email, linkedin_password)
 
-        # Define a hardcoded dictionary to map keywords to courses
         self.keyword_to_courses = {
             "data analysis": ["Data Science Specialization", "Google Data Analytics Certificate"],
             "machine learning": ["Artifical Intelligence Fundamentals", "AI Data Analytics and Knowledge Mining","Generative AI", "Machine And Deep Learning", "Responsible AI" ],
@@ -41,29 +38,24 @@ class ChatBot:
             return None
 
     def suggest_courses(self, profile):
-        # Extract relevant sections from the profile (e.g., skills, headline, summary)
         skills = profile.get("skills", [])
         headline = profile.get("headline", "")
         summary = profile.get("summary", "")
 
-        # Ensure all content is in string format
         content_list = []
 
-        # Handle skills (assuming they could be dictionaries)
         if isinstance(skills, list):
             for skill in skills:
                 if isinstance(skill, str):
                     content_list.append(skill)
-                elif isinstance(skill, dict):  # If a skill is a dictionary, extract relevant string value
-                    content_list.append(skill.get("name", ""))  # Assuming 'name' key contains skill name
+                elif isinstance(skill, dict):
+                    content_list.append(skill.get("name", ""))
 
-        # Add headline and summary
         if isinstance(headline, str):
             content_list.append(headline)
         if isinstance(summary, str):
             content_list.append(summary)
 
-        # Find courses based on keywords
         matched_courses = set()
         for keyword, courses in self.keyword_to_courses.items():
             if any(keyword in content.lower() for content in content_list if isinstance(content, str)):
@@ -86,7 +78,6 @@ class ChatBot:
                 profile_id = user_input.split(' ', 1)[1]
                 profile = self.get_linkedin_profile(profile_id)
                 if profile:
-                    #print("LinkedIn Profile:", profile)
                     print("Chatbot: Analyzing the profile to suggest courses...")
                     suggested_courses = self.suggest_courses(profile)
                     if suggested_courses:
