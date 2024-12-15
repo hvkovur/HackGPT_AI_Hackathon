@@ -1,10 +1,14 @@
 import os
 from dotenv import load_dotenv
 import google.generativeai as genai
-from linkedin_api import Linkedin
+from linkedin_api import Linkedin 
 
 # Load environment variables from a .env file
 load_dotenv()
+'''
+print("GOOGLE_API_KEY:", os.getenv("GOOGLE_API_KEY"))
+print("LINKEDIN_EMAIL:", os.getenv("LINKEDIN_EMAIL"))
+print("LINKEDIN_PASSWORD:", os.getenv("LINKEDIN_PASSWORD")) '''
 
 class SecureChatbot:
     def __init__(self):
