@@ -1,31 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Chatbot & LinkedIn Integration</title>
-  <link rel="stylesheet" href="style.css"> <!-- Link to CSS file -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chatbot</title>
+    <!-- Link to the CSS file -->
+    <link rel="stylesheet" href="static/css/style.css">
 </head>
 <body>
-  <h1>AI Chatbot & LinkedIn Integration</h1>
-  <div id="chat-container">
-    <div id="chat-output">
-      <!-- Chatbot responses will be displayed here -->
+
+    <!-- Chatbot container -->
+    <div class="chat-container">
+        <div class="chat-header">
+            <h2>Chatbot</h2>
+        </div>
+        <div class="chat-box" id="chat-output"></div>
+        <div class="input-container">
+            <input type="text" id="user-input" placeholder="Type your message here...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
     </div>
-    <form id="chat-form" action="/chat" method="POST">
-      <input id="chat-input" type="text" name="message" placeholder="Type your message..." required />
-      <button type="submit">Send</button>
-    </form>
-  </div>
 
-  <h2>Get LinkedIn Profile</h2>
-  <form id="linkedin-form" action="/linkedin" method="POST">
-    <input id="linkedin-id" type="text" name="profile_id" placeholder="Enter LinkedIn profile ID..." required />
-    <button type="submit">Fetch Profile</button>
-  </form>
-  <div id="linkedin-output">
-    <!-- LinkedIn profile information will be displayed here -->
-  </div>
-
+    <!-- Link to the JavaScript file (placed just before closing body tag) -->
+    <script src="static/js/script.js"></script>
 </body>
 </html>
