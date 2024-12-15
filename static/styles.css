@@ -29,14 +29,15 @@ body {
 .chatbox {
     flex-grow: 1;
     overflow-y: auto;
-    padding-right: 20px;
     margin-bottom: 20px;
+    padding-right: 10px;
 }
 
-.chat-message {
+.message {
     margin: 10px 0;
     padding: 10px;
     border-radius: 5px;
+    max-width: 80%;
 }
 
 .bot-message {
@@ -48,39 +49,10 @@ body {
     align-self: flex-end;
 }
 
-.input-container {
-    display: flex;
-    justify-content: space-between;
-}
-
 input[type="text"] {
-    width: 80%;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 16px;
+    margin-top: 10px;
 }
-
-button {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
-.linkedin-input-container {
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.linkedin-input-container input {
-    width: 80%;
-}
-

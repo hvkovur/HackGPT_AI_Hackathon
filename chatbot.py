@@ -1,4 +1,3 @@
-# chatbot.py
 import os
 from dotenv import load_dotenv
 import google.generativeai as genai
@@ -24,9 +23,9 @@ class ChatBot:
 
         self.keyword_to_courses = {
             "data analysis": ["Data Science Specialization", "Google Data Analytics Certificate"],
-            "machine learning": ["Artifical Intelligence Fundamentals", "AI Data Analytics and Knowledge Mining","Generative AI", "Machine And Deep Learning", "Responsible AI"],
+            "machine learning": ["Artifical Intelligence Fundamentals", "AI Data Analytics and Knowledge Mining", "Generative AI", "Machine And Deep Learning", "Responsible AI"],
             "python": ["Python for Beginners", "Python in Artificial Intelligence"],
-            "artificial intelligence": ["Artifical Intelligence Fundamentals", "AI Data Analytics and Knowledge Mining","Generative AI", "Machine And Deep Learning", "Responsible AI"],
+            "artificial intelligence": ["Artifical Intelligence Fundamentals", "AI Data Analytics and Knowledge Mining", "Generative AI", "Machine And Deep Learning", "Responsible AI"],
             "cybersecurity": ["Introduction to Cybersecurity", "Cybersecurity Certification Course"],
         }
 
