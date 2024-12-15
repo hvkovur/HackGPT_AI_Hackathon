@@ -23,7 +23,7 @@ function sendMessage() {
             const botMessage = document.createElement('div');
             botMessage.className = 'bot-message';
             if (data.response) {
-                botMessage.textContent = data.response;
+                botMessage.innerHTML = data.response;  // Use innerHTML to allow HTML in response
             } else {
                 botMessage.textContent = 'Sorry, I didn\'t get that!';
             }

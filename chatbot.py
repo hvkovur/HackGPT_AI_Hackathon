@@ -66,44 +66,45 @@ class ChatBot:
 
         return list(matched_courses)
 
-    def conversation(self):
-        print("Chatbot: Hello! How can I help you today? \nType 'exit' to end the conversation.")
-        print("You can also type 'linkedin [profile]' to fetch a LinkedIn profile and suggest courses.")
-
-        while True:
-            user_input = input("You: ").strip()
-
-            if user_input.lower() == 'exit':
-                print("Chatbot: Goodbye!")
-                break
-
-            if user_input.startswith('linkedin '):
-                profile_id = user_input.split(' ', 1)[1]
-                profile = self.get_linkedin_profile(profile_id)
-                if profile:
-                    print("Chatbot: Analyzing the profile to suggest courses...")
-                    suggested_courses = self.suggest_courses(profile)
-                    if suggested_courses:
-                        print("Chatbot: Based on the profile, here are some courses you might find helpful:")
-                        for course in suggested_courses:
-                            print(f"  - {course}")
-                    else:
-                        print("Chatbot: No relevant courses found based on the profile.")
+    def handle_chat(self, user_input):
+        if user_input.startswith('linkedin '):
+            profile_id = user_input.split(' ', 1)[1]
+            profile = self.get_linkedin_profile(profile_id)
+            if profile:
+                suggested_courses = self.suggest_courses(profile)
+                if suggested_courses:
+                    return f"Based on the profile, here are some courses you might find helpful:<br>" + "<br>".join(f"- {course}" for course in suggested_courses)
                 else:
-                    print("Chatbot: Could not retrieve the LinkedIn profile.")
-                continue
+                    return "No relevant courses found based on the profile."
+            else:
+                return "Could not retrieve the LinkedIn profile."
 
+        try:
             response = self.chat.send_message(user_input, stream=True)
-            print("Chatbot:", end=" ")
+            full_response = ""
             for chunk in response:
                 if chunk.text:
-                    print(chunk.text, end="", flush=True)
-            print()
+                    full_response += chunk.text
+            return full_response
+        except Exception as e:
+            return f"Sorry, an error occurred: {str(e)}"
 
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/chat', methods=['POST'])
+def chat():
+    chatbot = ChatBot()
+    data = request.get_json()
+    user_input = data.get('user_input', '')
+    
+    response = chatbot.handle_chat(user_input)
+    
+    return jsonify({"response": response})
 
 def main():
-    chatbot = ChatBot()
-    chatbot.conversation()
+    app.run(debug=True)
 
 if __name__ == "__main__":
     main()
