@@ -2,9 +2,12 @@ import os
 from dotenv import load_dotenv
 import google.generativeai as genai
 from linkedin_api import Linkedin
+from flask import Flask, render_template, request, jsonify
 
 # Load environment variables from .env file
 load_dotenv()
+
+app = Flask(__name__)
 
 class ChatBot:
     def __init__(self):

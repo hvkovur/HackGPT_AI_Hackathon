@@ -3,25 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Chatbot</title>
-    <!-- Link to the CSS file -->
-    <link rel="stylesheet" href="static/css/style.css">
+    <title>AI CareerBot</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <!-- Chatbot container -->
     <div class="chat-container">
+        <!-- Chat Header -->
         <div class="chat-header">
-            <h2>Chatbot</h2>
+            <h2>AI Career Assistant</h2>
         </div>
-        <div class="chat-box" id="chat-output"></div>
+
+        <!-- Chat Box (where messages appear) -->
+        <div id="chat-output" class="chat-box">
+            <div class="bot-message">Hello! How can I help you today? Type 'exit' to end the conversation. You can also type 'linkedin [profile]' to fetch a LinkedIn profile and suggest courses.</div>
+        </div>
+
+        <!-- User Input Field -->
         <div class="input-container">
-            <input type="text" id="user-input" placeholder="Type your message here...">
+            <input type="text" id="user-input" placeholder="Type your message..." />
             <button onclick="sendMessage()">Send</button>
+        </div>
+        <!-- Typing Indicator -->
+        <div id="typing-indicator" class="input-typing-indicator" style="display: none;">
+            <span></span><span></span><span></span> Typing...
         </div>
     </div>
 
-    <!-- Link to the JavaScript file (placed just before closing body tag) -->
-    <script src="static/js/script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
