@@ -14,7 +14,7 @@ class ChatBot:
         linkedin_password = os.getenv('LINKEDIN_PASSWORD')
 
         if not all([google_api_key, linkedin_email, linkedin_password]):
-            raise ValueError("Missing one or more environment variables.")
+            raise ValueError("You are missing a username or password.")
 
         # Configure Google Generative AI
         genai.configure(api_key=google_api_key)
@@ -25,11 +25,11 @@ class ChatBot:
 
         # Define a hardcoded dictionary to map keywords to courses
         self.keyword_to_courses = {
-            "data analysis": ["Data Science Specialization by Coursera", "Google Data Analytics Certificate"],
-            "machine learning": ["Machine Learning by Andrew Ng (Coursera)", "Deep Learning Specialization"],
-            "project management": ["PMP Certification", "Google Project Management Certificate"],
-            "python": ["Python for Everybody Specialization", "Automate the Boring Stuff with Python"],
-            "cybersecurity": ["Certified Ethical Hacker (CEH)", "Introduction to Cybersecurity by Cisco"],
+            "data analysis": ["Data Science Specialization", "Google Data Analytics Certificate"],
+            "machine learning": ["Artifical Intelligence Fundamentals", "AI Data Analytics and Knowledge Mining","Generative AI", "Machine And Deep Learning", "Responsible AI" ],
+            "python": ["Python for Beginners", "Python in Artifical Intelligence"],
+            "artificial intelligence": ["Artifical Intelligence Fundamentals", "AI Data Analytics and Knowledge Mining","Generative AI", "Machine And Deep Learning", "Responsible AI" ],
+            "cybersecurity": ["Introduction to Cybersecurity", "Cybersecurity Certification Course"],
         }
 
     def get_linkedin_profile(self, profile_identifier):
